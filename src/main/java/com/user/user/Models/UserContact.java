@@ -1,6 +1,6 @@
 package com.user.user.Models;
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 
 import javax.persistence.*;
 
@@ -12,15 +12,15 @@ public class UserContact {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     @Column(name = "userid")
-    private String userid;
+    private int userid;
     @Column(name = "contactid")
-    private String contactid;
+    private int contactid;
  
-    @ManyToMany(mappedBy = "contactid")
-    private Set<UserContact> contacts = new HashSet<>();
+    //@ManyToMany(mappedBy = "contactid")
+    //private Set<UserContact> contacts = new HashSet<>();
 
-    @ManyToMany(mappedBy = "userid")
-    private Set<UserContact> users = new HashSet<>();
+    //@ManyToMany(mappedBy = "userid")
+    //private Set<UserContact> users = new HashSet<>();
 
     public int getid() {
         return this.id;
@@ -30,23 +30,23 @@ public class UserContact {
         this.id = id;
     }
 
-    public String getContactid() {
+    public int getContactid() {
         return this.contactid;
     }
 
-    public void setContactid(String id_contact) {
+    public void setContactid(int id_contact) {
         this.contactid = id_contact;
     }
 
-    public String getUserid() {
+    public int getUserid() {
         return this.userid;
     }
 
-    public void setUserid(String id_user) {
+    public void setUserid(int id_user) {
         this.userid = id_user;
     }
 
-    public UserContact(String id_contact, String id_user){
+    public UserContact(int id_contact, int id_user){
         this.contactid = id_contact;
         this.userid = id_user;
     }

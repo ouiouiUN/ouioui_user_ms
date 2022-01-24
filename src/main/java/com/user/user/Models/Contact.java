@@ -10,13 +10,13 @@ public class Contact {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     @Column(name = "contactid")
-    private String contactid;
+    private int contactid;
     @Column(name = "contactname")
     private String contactname;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "usercontact",joinColumns = { @JoinColumn(name = "contactid") },
-    inverseJoinColumns = { @JoinColumn(name = "contactid")})
+    //@ManyToMany(cascade = { CascadeType.ALL })
+    //@JoinTable(name = "usercontact",joinColumns = { @JoinColumn(name = "contactid") },
+    //inverseJoinColumns = { @JoinColumn(name = "contactid")})
 
     public int getId() {
         return this.id;
@@ -26,11 +26,11 @@ public class Contact {
         this.id = id;
     }
 
-    public String getContactid() {
+    public int getContactid() {
         return this.contactid;
     }
 
-    public void setContactid(String id_contact) {
+    public void setContactid(int id_contact) {
         this.contactid = id_contact;
     }
 
@@ -42,7 +42,7 @@ public class Contact {
         this.contactname = id_user;
     }
 
-    public Contact(String id_contact, String contact_name){
+    public Contact(int id_contact, String contact_name){
         this.contactid = id_contact;
         this.contactname = contact_name;
     }

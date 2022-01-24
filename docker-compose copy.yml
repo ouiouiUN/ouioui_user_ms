@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+    #service 1: definition of mysql database
+    db:
+      image: mysql:latest
+      container_name: mysql_usermicroservice_db 
+      networks:
+        - spring-docker-network
+      environment:
+        - MYSQL_DATABASE=user_database
+        - MYSQL_ROOT_PASSWORD=123
+      ports:
+       - "3306:3306" 
+      restart: always
+    
+    #service 2: Spring app
+    app:
+      image: openjdk:latest
+      container_name: ouioui_user_ms
+      networks:
+        - spring-docker-network
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      depends_on:
+        - db
+      ports:
+        - "8000:8000"
+      restart: on-failure
+      environment:
+        - DATABASE_HOST=db
+        - DATABASE_USER=root
+        - DATABASE_PASSWORD=123
+        - DATABASE_NAME=user_database
+        - DATABASE_PORT=3306
+
+networks:
+  spring-docker-network:
+    driver: bridge
